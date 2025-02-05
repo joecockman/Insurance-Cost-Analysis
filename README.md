@@ -1,4 +1,5 @@
 # Insurance-Cost-Analysis
+![The Unknown Lands](Images/screenshot_1.png)
 
 ## Project Introduction
 
