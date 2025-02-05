@@ -1,11 +1,14 @@
 # Insurance-Cost-Analysis
 
+## Project Introduction
+
 This python project is part of the Codecademy 'Business Intelligence Data Analyst' career path I have been undertaking.
 
 The project itself was completely open-ended. I was provided with a csv file containing medical insurance cost data and was tasked with using python to analyse the data set and draw out meaningful insights and conclusions. The csv file can be found in the file repository above.
 
-Below I have detailed the steps I took in approcahing and analysing the dataset, insurance.csv.
 
+## Project Code
+Below I have detailed the steps I took in approcahing and analysing the dataset, insurance.csv.
 
 ```
 import csv
@@ -60,7 +63,10 @@ print("The Average cost for a non-smoker is: $" + str(non_smoke_rounded))
 ```
 
 The Average cost for a smoker is: $32050.23
+
 The Average cost for a non-smoker is: $8434.27
+
+This was the single largest variable in increasing insurance cost, with smokers paying almost 4x as much as non-smokers.
 
 
 # Age & Cost.
@@ -127,60 +133,37 @@ avg_below_40 = round(below_40_cost / below_40_count, 2)
 avg_below_50 = round(below_50_cost / below_50_count, 2)
 avg_below_60 = round(below_60_cost / below_60_count, 2)
 avg_above_60 = round(above_60_cost / below_60_count, 2)
-
-print("Insurance Cost by Age:")
-print("-----")
-print("Age: 0-19:")
-print("Number of people: " + str(below_20_count))
-print("Average Insurance Cost: $" + str(avg_below_20))
-print("-----")
-print("Age: 20-29:")
-print("Number of people: " + str(below_30_count))
-print("Average Insurance Cost: $" + str(avg_below_30))
-print("-----")
-print("Age: 30-39:")
-print("Number of people: " + str(below_40_count))
-print("Average Insurance Cost: $" + str(avg_below_40))
-print("-----")
-print("Age: 40-49:")
-print("Number of people: " + str(below_50_count))
-print("Average Insurance Cost: $" + str(avg_below_50))
-print("-----")
-print("Age: 50-59:")
-print("Number of people: " + str(below_60_count))
-print("Average Insurance Cost: $" + str(avg_below_60))
-print("-----")
-print("Age: 60+:")
-print("Number of people: " + str(above_60_count))
-print("Average Insurance Cost: $" + str(avg_above_60))
-print("-----")
 ```
-Insurance Cost by Age:
------
-Age: 0-19:
+# Age and Insurance Cost
+
+## Age: 0-19:
 Number of people: 137
+
 Average Insurance Cost: $8407.35
------
-Age: 20-29:
+
+## Age: 20-29:
 Number of people: 280
+
 Average Insurance Cost: $9561.75
------
-Age: 30-39:
+
+## Age: 30-39:
 Number of people: 257
+
 Average Insurance Cost: $11738.78
------
-Age: 40-49:
+
+## Age: 40-49:
 Number of people: 279
+
 Average Insurance Cost: $14399.2
------
-Age: 50-59:
+
+## Age: 50-59:
 Number of people: 271
+
 Average Insurance Cost: $16495.23
------
-Age: 60+:
+
+## Age: 60+:
 Number of people: 114
-Average Insurance Cost: $8938.28
------
+
 
 # Gender & Cost.
 ```
@@ -220,16 +203,18 @@ print("Gender: Female")
 print("Count: " + str(female_count))
 print("Average Insurance Cost: $" + str(avg_female_cost))
 ```
-Insurance Cost by Gender:
------
-Gender: Male
-Count: 676
-Average Insurance Cost: $13390.98
------
-Gender: Female
-Count: 662
-Average Insurance Cost: $13297.15
------
+## Gender
+The dataset contained 1338 records. Of these:
+
+676 were males.
+
+662 were females.
+
+The average insurance cost for a male across the entire dataset was $13,390.98
+
+The average insurance cost for a female across the entire dataset was $13,297.15
+
+The overall insurance cost therefore was very similar for both males and females, when not specifying any other variables.
 
 # Average BMI
 ```
@@ -283,7 +268,71 @@ avg_under_30 = round(under_30 / under_30_count, 2)
 avg_under_40 = round(under_40 / under_40_count, 2)
 avg_under_50 = round(under_50 / under_50_count, 2)
 avg_over_50 = round(over_50 / over_50_count, 2)
+```
+Next I looked at how a person's BMI may impact their insurance cost. Of course it's important to remember that 
 
+## BMI: 10-20:
+Number of people: 41
+
+Average Insurance Cost: $8838.56
+
+## BMI: 20-29:
+Number of people: 631
+
+Average Insurance Cost: $10713.67
+
+## BMI: 30-39:
+Number of people: 1247
+
+Average Insurance Cost: $13013.97
+
+## BMI: 40-49:
+Number of people: 1335
+
+Average Insurance Cost: $13264.21
+
+## BMI: 50+:
+Number of people: 3
+
+Average Insurance Cost: $16034.31
+
+# Insurance Cost & Region
+```
+under_20 = 0
+under_20_count = 0
+under_30 = 0
+under_30_count = 0
+under_40 = 0
+under_40_count = 0
+under_50 = 0
+under_50_count = 0
+over_50 = 0
+over_50_count = 0
+
+for person in bmi_and_charges_list:
+    if person[0] < 20:
+        under_20 += person[1]
+        under_20_count += 1
+    if person[0] < 30:
+        under_30 += person[1]
+        under_30_count += 1
+    if person[0] < 40:
+        under_40 += person[1]
+        under_40_count += 1
+    if person[0] < 50:
+        under_50 += person[1]
+        under_50_count += 1
+    if person[0] > 50:
+        over_50 += person[1]
+        over_50_count += 1
+
+avg_under_20 = round(under_20 / under_20_count, 2)
+avg_under_30 = round(under_30 / under_30_count, 2)
+avg_under_40 = round(under_40 / under_40_count, 2)
+avg_under_50 = round(under_50 / under_50_count, 2)
+avg_over_50 = round(over_50 / over_50_count, 2)
+```
+```
 print("Insurance Cost by BMI:")
 print("-----")
 print("BMI: 10-20:")
@@ -307,25 +356,25 @@ print("Number of people: " + str(over_50_count))
 print("Average Insurance Cost: $" + str(avg_over_50))
 print("-----")
 ```
-Insurance Cost by BMI:
------
-BMI: 10-20:
-Number of people: 41
-Average Insurance Cost: $8838.56
------
-BMI: 20-29:
-Number of people: 631
-Average Insurance Cost: $10713.67
------
-BMI: 30-39:
-Number of people: 1247
-Average Insurance Cost: $13013.97
------
-BMI: 40-49:
-Number of people: 1335
-Average Insurance Cost: $13264.21
------
-BMI: 50+:
-Number of people: 3
-Average Insurance Cost: $16034.31
------
+## Geographical Region
+The dataset was split into 4 'regions'. The distribution across those regions was mostly equal, though the price varied quite significantly, with over $1000 the difference between the cheapest region (southwest) and the most expensive (southeast). The data is shown below:
+
+## Northeast: 
+Number of records: 324
+
+Average Insurance Cost: $13,406.38
+
+## Northwest: 
+Number of records: 325
+
+Average Insurance Cost: $12,417.58
+
+## Southeast: 
+Number of records: 364
+
+Average Insurance Cost: $14,735.41
+
+## Southwest: 
+Number of records: 325
+
+Average Insurance Cost: $12,346.94
