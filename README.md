@@ -117,15 +117,15 @@ The count variable was important, not only because it's interesting to know how 
 The cost variable was divided by the count variable and rounded to two decimal places to create the 'avg' variables.
 
 The results are shown below in a bar chart.
-![Average Insurance Cost by Age](Images/Age_Cost_2.png)
-As you can see 
+![Average Insurance Cost by Age](Images/age_cost_3.png)
+As you can see the average cost of medical insurance increases with age throughout the age groups, however drops off at the 60+ group.
 
 
 
 ![Average Insurance Cost by Gender](Images/gender_cost.png)
-![Average Insurance Cost by BMI](Images/bmi_cost_2.png)
+![Average Insurance Cost by BMI](Images/bmi_cost_3.png)
 ![Average Insurance Cost by Smoking Status](Images/smoking_cost.png)
-![Average Insurance Cost by Region](Images/region_cost_2.png)
+![Average Insurance Cost by Region](Images/region_cost_3.png)
 ![Smoking Prevalence by Age](Images/smoking_age.png)
 
 
