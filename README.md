@@ -1,5 +1,5 @@
 # Insurance-Cost-Analysis
-![The Unknown Lands](Images/screenshot_1.png)
+![The Unknown Lands](Images/medical_insurance_project.jpg)
 
 ## Project Introduction
 
@@ -379,3 +379,115 @@ Average Insurance Cost: $14,735.41
 Number of records: 325
 
 Average Insurance Cost: $12,346.94
+
+## Smokers by Age
+```
+below_20_count = 0
+below_20_smokers = 0
+below_20_non_smokers = 0
+
+below_30_count = 0
+below_30_smokers = 0
+below_30_non_smokers = 0
+
+below_40_count = 0
+below_40_smokers = 0
+below_40_non_smokers = 0
+
+below_50_count = 0
+below_50_smokers = 0
+below_50_non_smokers = 0
+
+below_60_count = 0
+below_60_smokers = 0
+below_60_non_smokers = 0
+
+above_60_count = 0
+above_60_smokers = 0
+above_60_non_smokers = 0
+
+for person in age_and_smoke_list:
+    if person[0] < 20:
+        below_20_count += 1
+        if person[1] == "yes":
+            below_20_smokers += 1
+        else:
+            below_20_non_smokers += 1
+    if 20 <= person[0] < 30:
+        below_30_count += 1
+        if person[1] == "yes":
+            below_30_smokers += 1
+        else:
+            below_30_non_smokers += 1
+    if 30 <= person[0] < 40:
+        below_40_count += 1
+        if person[1] == "yes":
+            below_40_smokers += 1
+        else:
+            below_40_non_smokers += 1
+    if 40 <= person[0] < 50:
+        below_50_count += 1
+        if person[1] == "yes":
+            below_50_smokers += 1
+        else:
+            below_50_non_smokers += 1
+    if 50 <= person[0] < 60:
+        below_60_count += 1
+        if person[1] == "yes":
+            below_60_smokers += 1
+        else:
+            below_60_non_smokers += 1
+    if person[0] > 60:
+        above_60_count += 1
+        if person[1] == "yes":
+            above_60_smokers += 1
+        else:
+            above_60_non_smokers += 1
+        
+below_20_percent = round(below_20_smokers / below_20_count *100, 2)
+below_30_percent = round(below_30_smokers / below_30_count *100, 2)  
+below_40_percent = round(below_40_smokers / below_40_count *100, 2)  
+below_50_percent = round(below_50_smokers / below_50_count *100, 2)  
+below_60_percent = round(below_60_smokers / below_60_count *100, 2)
+above_60_percent = round(above_60_smokers / above_60_count *100, 2)  
+
+
+print("Smokers by Age:")
+print("-----")
+print("Age: 0-19:")
+print("Number of people: " + str(below_20_count))
+print("Number of Smokers: " + str(below_20_smokers))
+print("Number of Non-Smokers: " + str(below_20_non_smokers))
+print("Smoker %: " + str(below_20_percent) + "%")
+print("-----")
+print("Age: 20-29:")
+print("Number of people: " + str(below_30_count))
+print("Number of Smokers: " + str(below_30_smokers))
+print("Number of Non-Smokers: " + str(below_30_non_smokers))
+print("Smoker %: " + str(below_30_percent) + "%")
+print("-----")
+print("Age: 30-39:")
+print("Number of people: " + str(below_40_count))
+print("Number of Smokers: " + str(below_40_smokers))
+print("Number of Non-Smokers: " + str(below_40_non_smokers))
+print("Smoker %: " + str(below_40_percent) + "%")
+print("-----")
+print("Age: 40-49:")
+print("Number of people: " + str(below_50_count))
+print("Number of Smokers: " + str(below_50_smokers))
+print("Number of Non-Smokers: " + str(below_50_non_smokers))
+print("Smoker %: " + str(below_50_percent) + "%")
+print("-----")
+print("Age: 50-59:")
+print("Number of people: " + str(below_60_count))
+print("Number of Smokers: " + str(below_60_smokers))
+print("Number of Non-Smokers: " + str(below_60_non_smokers))
+print("Smoker %: " + str(below_60_percent) + "%")
+print("-----")
+print("Age: 60+:")
+print("Number of people: " + str(above_60_count))
+print("Number of Smokers: " + str(above_60_smokers))
+print("Number of Non-Smokers: " + str(above_60_non_smokers))
+print("Smoker %: " + str(above_60_percent) + "%")
+print("-----")
+```
