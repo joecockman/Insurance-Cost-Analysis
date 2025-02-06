@@ -7,8 +7,120 @@ This python project is part of the Codecademy 'Business Intelligence Data Analys
 
 The project itself was completely open-ended. I was provided with a csv file containing medical insurance cost data and was tasked with using python to analyse the data set and draw out meaningful insights and conclusions. The csv file can be found in the file repository above.
 
+I chose to research the following themes from the dataset:
 
+- Average Insurance Cost by Age
+- Average Insurance Cost by Gender
+- Average Insurance Cost by BMI
+- Average Insurance Cost by Smoking Status
+- Average Insurance Cost by Region
+- Smoking Prevalence by Age
+
+I have broken these down below, showing the code I used to extract my findings and explaining the results. I have also used Excel to create graphs that display the conclusions in an easy to visualise way.
+
+# First Steps
+```
+import csv
+with open("insurance.csv") as insurance_csv:
+    insurance_data = insurance_csv.read()
+```
+```
+insurance_data_list = []
+with open("insurance.csv") as insurance_csv:
+    insurance_dict = csv.DictReader(insurance_csv, delimiter = ",")
+    for row in insurance_dict:
+        insurance_data_list.append(row)
+```
+The first step I took was importing the csv module and then opening the file as a file object named insurance_csv. I then used insurance_csv.read to view the file data in the output.
+
+I then used the .DictReader function to create a variable called 'insurance_dict', which stored each row of the csv file as it's own dictionary. Once this was created, I used a for loop to iterate through 'insurance_dict' and add each row to a list called 'insurance_data_list'. In this way I created a list of dictionaries that I used throughout my analysis.
+
+# Average Insurance Cost by Age
+```
+ages = []
+for person in insurance_data_list:
+    ages.append(person["age"])
+int_ages = []
+for age in ages:
+    int_ages.append(int(age))
+```
+```
+charges = []
+for person in insurance_data_list:
+    float_charges = float(person["charges"])
+    round_float_charge = round(float_charges,2)
+    charges.append(round_float_charge)
+print(charges)
+```
+```
+ages_and_charges = zip(int_ages, charges)
+ages_and_charges_list = list(ages_and_charges)
+print(ages_and_charges_list)
+```
+The first step here was to create lists that contained only the data I wanted to work with. For this question, it was 'ages' and 'charges'.
+
+I used for loops to iterate through 'insurance_data_list' and append the 'ages' and 'charges' data to their respective lists. 'insurance_data_list' however has every value as a string value, so it was important for my analysis to make sure that both of these lists, with their values being purely numerical, were converted to either ints or floats.
+
+Once the data was converted to a numerical type, I used the zip() function to stitch the lists together and then saved that to a list() variable called ages_and_charges_list.
+
+I was then ready to analyse the relationship between these two points. The code I used is below.
+
+```
+below_20_cost = 0
+below_20_count = 0
+below_30_cost = 0
+below_30_count = 0
+below_40_cost = 0
+below_40_count = 0
+below_50_cost = 0
+below_50_count = 0
+below_60_cost = 0
+below_60_count = 0
+above_60_cost = 0
+above_60_count = 0
+
+for person in ages_and_charges_list:
+    if person[0] < 20:
+        below_20_cost += person[1]
+        below_20_count += 1
+    if 20 <= person[0] < 30:
+        below_30_cost += person[1]
+        below_30_count += 1
+    if 30 <= person[0] < 40:
+        below_40_cost += person[1]
+        below_40_count += 1
+    if 40 <= person[0] < 50:
+        below_50_cost += person[1]
+        below_50_count += 1
+    if 50 <= person[0] < 60:
+        below_60_cost += person[1]
+        below_60_count += 1
+    if person[0] >= 60:
+        above_60_cost += person[1]
+        above_60_count += 1
+
+avg_below_20 = round(below_20_cost / below_20_count, 2)
+avg_below_30 = round(below_30_cost / below_30_count, 2)
+avg_below_40 = round(below_40_cost / below_40_count, 2)
+avg_below_50 = round(below_50_cost / below_50_count, 2)
+avg_below_60 = round(below_60_cost / below_60_count, 2)
+avg_above_60 = round(above_60_cost / below_60_count, 2)
+```
+I initialised a number of variables with values of 0, shown at the top of this code block.
+
+I then used for loops to iterate through the 'ages_and_charges_list' and add to these predefined variables depending on the if statements.
+
+The count variables simply add 1 in order to track the number of people in that particular group, whereas the cost variables store the sum of the cost for everyone in that group.
+
+The count variable was important, not only because it's interesting to know how large that particular data group is, but also because I needed it to calculate the average cost.
+
+The cost variable was divided by the count variable and rounded to two decimal places to create the 'avg' variables.
+
+The results are shown below in a bar chart.
 ![Average Insurance Cost by Age](Images/Age_Cost.png)
+
+
+
 ![Average Insurance Cost by Gender](Images/gender_cost.png)
 ![Average Insurance Cost by BMI](Images/bmi_cost.png)
 ![Average Insurance Cost by Smoking Status](Images/smoking_cost.png)
@@ -16,26 +128,8 @@ The project itself was completely open-ended. I was provided with a csv file con
 ![Smoking Prevalence by Age](Images/smoking_age.png)
 
 
-## Project Code
-Below I have detailed the steps I took in approcahing and analysing the dataset, insurance.csv.
 
-```
-import csv
-with open("insurance.csv") as insurance_csv:
-    insurance_data = insurance_csv.read()
-    print(insurance_data)
-```
-The first step I took was importing the csv module and then opening the file as a file object named insurance_csv. I then used insurance_csv.read to view the file data in the output.
 
-```
-insurance_data_list = []
-
-with open("insurance.csv") as insurance_csv:
-    insurance_dict = csv.DictReader(insurance_csv, delimiter = ",")
-    for row in insurance_dict:
-        insurance_data_list.append(row)
-print(insurance_data_list)
-```
 
 # Smoker Status & Cost.
 ```
@@ -79,70 +173,7 @@ This was the single largest variable in increasing insurance cost, with smokers 
 
 
 # Age & Cost.
-```
-ages = []
-for person in insurance_data_list:
-    ages.append(person["age"])
 
-int_ages = []
-for age in ages:
-    int_ages.append(int(age))
-```
-
-```
-charges = []
-for person in insurance_data_list:
-    float_charges = float(person["charges"])
-    round_float_charge = round(float_charges,2)
-    charges.append(round_float_charge)
-print(charges)
-```
-```
-ages_and_charges = zip(int_ages, charges)
-ages_and_charges_list = list(ages_and_charges)
-print(ages_and_charges_list)
-```
-```
-below_20_cost = 0
-below_20_count = 0
-below_30_cost = 0
-below_30_count = 0
-below_40_cost = 0
-below_40_count = 0
-below_50_cost = 0
-below_50_count = 0
-below_60_cost = 0
-below_60_count = 0
-above_60_cost = 0
-above_60_count = 0
-
-for person in ages_and_charges_list:
-    if person[0] < 20:
-        below_20_cost += person[1]
-        below_20_count += 1
-    if 20 <= person[0] < 30:
-        below_30_cost += person[1]
-        below_30_count += 1
-    if 30 <= person[0] < 40:
-        below_40_cost += person[1]
-        below_40_count += 1
-    if 40 <= person[0] < 50:
-        below_50_cost += person[1]
-        below_50_count += 1
-    if 50 <= person[0] < 60:
-        below_60_cost += person[1]
-        below_60_count += 1
-    if person[0] >= 60:
-        above_60_cost += person[1]
-        above_60_count += 1
-
-avg_below_20 = round(below_20_cost / below_20_count, 2)
-avg_below_30 = round(below_30_cost / below_30_count, 2)
-avg_below_40 = round(below_40_cost / below_40_count, 2)
-avg_below_50 = round(below_50_cost / below_50_count, 2)
-avg_below_60 = round(below_60_cost / below_60_count, 2)
-avg_above_60 = round(above_60_cost / below_60_count, 2)
-```
 # Age and Insurance Cost
 
 ## Age: 0-19:
