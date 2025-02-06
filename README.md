@@ -117,14 +117,15 @@ The count variable was important, not only because it's interesting to know how 
 The cost variable was divided by the count variable and rounded to two decimal places to create the 'avg' variables.
 
 The results are shown below in a bar chart.
-![Average Insurance Cost by Age](Images/Age_Cost.png)
+![Average Insurance Cost by Age](Images/Age_Cost_2.png)
+As you can see 
 
 
 
 ![Average Insurance Cost by Gender](Images/gender_cost.png)
-![Average Insurance Cost by BMI](Images/bmi_cost.png)
+![Average Insurance Cost by BMI](Images/bmi_cost_2.png)
 ![Average Insurance Cost by Smoking Status](Images/smoking_cost.png)
-![Average Insurance Cost by Region](Images/region_cost.png)
+![Average Insurance Cost by Region](Images/region_cost_2.png)
 ![Smoking Prevalence by Age](Images/smoking_age.png)
 
 
