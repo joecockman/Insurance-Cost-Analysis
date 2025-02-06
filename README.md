@@ -8,6 +8,14 @@ This python project is part of the Codecademy 'Business Intelligence Data Analys
 The project itself was completely open-ended. I was provided with a csv file containing medical insurance cost data and was tasked with using python to analyse the data set and draw out meaningful insights and conclusions. The csv file can be found in the file repository above.
 
 
+![Average Insurance Cost by Age](Images/Age_Cost.png)
+![Average Insurance Cost by Gender](Images/gender_cost.png)
+![Average Insurance Cost by BMI](Images/bmi_cost.png)
+![Average Insurance Cost by Smoking Status](Images/smoking_cost.png)
+![Average Insurance Cost by Region](Images/region_cost.png)
+![Smoking Prevalence by Age](Images/smoking_age.png)
+
+
 ## Project Code
 Below I have detailed the steps I took in approcahing and analysing the dataset, insurance.csv.
 
