@@ -117,96 +117,10 @@ The count variable was important, not only because it's interesting to know how 
 The cost variable was divided by the count variable and rounded to two decimal places to create the 'avg' variables.
 
 The results are shown below in a bar chart.
-![Average Insurance Cost by Age](Images/age_cost_3.png)
-As you can see the average cost of medical insurance increases with age throughout the age groups, however drops off at the 60+ group to return to levels that are similar to the 0-20 group.
+![Average Insurance Cost by Age](Images/age_cost_4.png)
+As you can see the average cost of medical insurance increases with age throughout the age groups, with a significant disparity between the the youngest group ($8407.35) and the oldest group ($21,408.02), an increase of just over 2.5x. This is consistent with what you would expect to find from such data as medical insurance is of course more costly for elderly people who are more likley to need it.
 
-
-
-![Average Insurance Cost by Gender](Images/gender_cost.png)
-![Average Insurance Cost by BMI](Images/bmi_cost_3.png)
-![Average Insurance Cost by Smoking Status](Images/smoking_cost.png)
-![Average Insurance Cost by Region](Images/region_cost_3.png)
-![Smoking Prevalence by Age](Images/smoking_age.png)
-
-
-
-
-
-# Smoker Status & Cost.
-```
-smokers_cost = [person["charges"] for person in insurance_data_list if person["smoker"] == "yes"]
-non_smokers_cost = [person["charges"] for person in insurance_data_list if person["smoker"] == "no"]
-
-number_of_smokers = 0
-for smoker in smokers_cost:
-    number_of_smokers += 1
-num_smokers = (float(number_of_smokers))
-
-smokey_cost = []
-for value in smokers_cost:
-    smokey_cost.append(float(value))
-smokers_total_charges = sum(smokey_cost)
-
-number_of_non_smokers = 0
-for non_smoker in non_smokers_cost:
-    number_of_non_smokers += 1
-num_non_smokers = (float(number_of_non_smokers))
-
-non_smokey_cost = []
-for value in non_smokers_cost:
-    non_smokey_cost.append(float(value))
-non_smokers_total_charges = sum(non_smokey_cost)
-
-smokers_average_cost = smokers_total_charges / num_smokers
-smokers_average_cost_rounded = round(smokers_average_cost, 2)
-print("The Average cost for a smoker is: $" + str(smokers_average_cost_rounded))
-
-non_smokers_average_cost = non_smokers_total_charges / num_non_smokers
-non_smoke_rounded = round(non_smokers_average_cost, 2)
-print("The Average cost for a non-smoker is: $" + str(non_smoke_rounded))
-```
-
-The Average cost for a smoker is: $32050.23
-
-The Average cost for a non-smoker is: $8434.27
-
-This was the single largest variable in increasing insurance cost, with smokers paying almost 4x as much as non-smokers.
-
-
-# Age & Cost.
-
-# Age and Insurance Cost
-
-## Age: 0-19:
-Number of people: 137
-
-Average Insurance Cost: $8407.35
-
-## Age: 20-29:
-Number of people: 280
-
-Average Insurance Cost: $9561.75
-
-## Age: 30-39:
-Number of people: 257
-
-Average Insurance Cost: $11738.78
-
-## Age: 40-49:
-Number of people: 279
-
-Average Insurance Cost: $14399.2
-
-## Age: 50-59:
-Number of people: 271
-
-Average Insurance Cost: $16495.23
-
-## Age: 60+:
-Number of people: 114
-
-
-# Gender & Cost.
+# Average Insurance Cost by Gender
 ```
 male_count = 0
 males = []
@@ -233,31 +147,16 @@ female_cost = 0
 for person in female_charges:
     female_cost += person[1]
 avg_female_cost = round(female_cost / female_count,2)
-
-print("Insurance Cost by Gender:")
-print("-----")
-print("Gender: Male")
-print("Count: " + str(male_count))
-print("Average Insurance Cost: $" + str(avg_male_cost))
-print("-----")
-print("Gender: Female")
-print("Count: " + str(female_count))
-print("Average Insurance Cost: $" + str(avg_female_cost))
 ```
-## Gender
-The dataset contained 1338 records. Of these:
+In order to investigate any difference in insurance cost between the two genders, I once again used a for loop to iterate through 'insurance_data_list', this time adding 1 to the male or female count each time, and also adding the gender into a blank list.
 
-676 were males.
+I then zipped these gender lists together with the charges list to create 'male_charges' and 'female_charges', before using for loops to iterate through these and add each 'charges' record to either 'male_cost' or 'female_cost. I then took an average of these numbers to find the male and female average. The results can be seen on the pie chart below.
 
-662 were females.
+![Average Insurance Cost by Gender](Images/gender_cost.png)
 
-The average insurance cost for a male across the entire dataset was $13,390.98
+As you can see my analysis has found that there is no significant disparity in insurance costs between the genders, at least from the limited sample size of this dataset.
 
-The average insurance cost for a female across the entire dataset was $13,297.15
-
-The overall insurance cost therefore was very similar for both males and females, when not specifying any other variables.
-
-# Average BMI
+# Average Insurance Cost by BMI
 ```
 bmi = []
 float_bmi = []
@@ -310,117 +209,103 @@ avg_under_40 = round(under_40 / under_40_count, 2)
 avg_under_50 = round(under_50 / under_50_count, 2)
 avg_over_50 = round(over_50 / over_50_count, 2)
 ```
-Next I looked at how a person's BMI may impact their insurance cost. Of course it's important to remember that 
+When investigating the relationship between average insurance costs and BMI, I took the same approach as I had taken previously. I created a zipped list called bmi_and_charges (though not before I had converted the bmi values from strings to floats) and then iterated through it, adding the values to their appropriate variables using if statements.
 
-## BMI: 10-20:
-Number of people: 41
+The sum total divided by the count gave me the average numbers, which are displayed in the graph below.
+![Average Insurance Cost by BMI](Images/bmi_cost_3.png)
 
-Average Insurance Cost: $8838.56
+We encounter a similar trend to the 'age' analysis here: the higher your bmi the higher your insurance costs. A quick search told me that anything over 25 is considered  overweight and anything over 30 is obese, which would apply to the majority of our records here.
 
-## BMI: 20-29:
-Number of people: 631
+It is also worth noting that BMI has often ben criticised as being a poor measure of someone's health.
 
-Average Insurance Cost: $10713.67
-
-## BMI: 30-39:
-Number of people: 1247
-
-Average Insurance Cost: $13013.97
-
-## BMI: 40-49:
-Number of people: 1335
-
-Average Insurance Cost: $13264.21
-
-## BMI: 50+:
-Number of people: 3
-
-Average Insurance Cost: $16034.31
-
-# Insurance Cost & Region
+# Average Insurance Cost by Smoking Status
 ```
-under_20 = 0
-under_20_count = 0
-under_30 = 0
-under_30_count = 0
-under_40 = 0
-under_40_count = 0
-under_50 = 0
-under_50_count = 0
-over_50 = 0
-over_50_count = 0
+smokers_cost = [person["charges"] for person in insurance_data_list if person["smoker"] == "yes"]
+non_smokers_cost = [person["charges"] for person in insurance_data_list if person["smoker"] == "no"]
 
-for person in bmi_and_charges_list:
-    if person[0] < 20:
-        under_20 += person[1]
-        under_20_count += 1
-    if person[0] < 30:
-        under_30 += person[1]
-        under_30_count += 1
-    if person[0] < 40:
-        under_40 += person[1]
-        under_40_count += 1
-    if person[0] < 50:
-        under_50 += person[1]
-        under_50_count += 1
-    if person[0] > 50:
-        over_50 += person[1]
-        over_50_count += 1
+number_of_smokers = 0
+for smoker in smokers_cost:
+    number_of_smokers += 1
+num_smokers = (float(number_of_smokers))
 
-avg_under_20 = round(under_20 / under_20_count, 2)
-avg_under_30 = round(under_30 / under_30_count, 2)
-avg_under_40 = round(under_40 / under_40_count, 2)
-avg_under_50 = round(under_50 / under_50_count, 2)
-avg_over_50 = round(over_50 / over_50_count, 2)
+smokey_cost = []
+for value in smokers_cost:
+    smokey_cost.append(float(value))
+smokers_total_charges = sum(smokey_cost)
+
+number_of_non_smokers = 0
+for non_smoker in non_smokers_cost:
+    number_of_non_smokers += 1
+num_non_smokers = (float(number_of_non_smokers))
+
+non_smokey_cost = []
+for value in non_smokers_cost:
+    non_smokey_cost.append(float(value))
+non_smokers_total_charges = sum(non_smokey_cost)
+
+smokers_average_cost = smokers_total_charges / num_smokers
+smokers_average_cost_rounded = round(smokers_average_cost, 2)
+print("The Average cost for a smoker is: $" + str(smokers_average_cost_rounded))
+
+non_smokers_average_cost = non_smokers_total_charges / num_non_smokers
+non_smoke_rounded = round(non_smokers_average_cost, 2)
+print("The Average cost for a non-smoker is: $" + str(non_smoke_rounded))
 ```
+For investigating smoking I tried to use a list comprehension to make the 'smokers_cost' and 'non_smokers_cost' lists. Once again I then used for loops, but this time added the 'charges' values into a list that I then summed using the sum() function. I took rounded averages and the results are displayed below.
+![Average Insurance Cost by Smoking Status](Images/smoking_cost.png)
+As you can see there is a very significant difference in these two costs, with smokers paying almost 4x as much. This is of course to be expected.
+
+# Average Insurance Cost by Region
 ```
-print("Insurance Cost by BMI:")
-print("-----")
-print("BMI: 10-20:")
-print("Number of people: " + str(under_20_count))
-print("Average Insurance Cost: $" + str(avg_under_20))
-print("-----")
-print("BMI: 20-29:")
-print("Number of people: " + str(under_30_count))
-print("Average Insurance Cost: $" + str(avg_under_30))
-print("-----")
-print("BMI: 30-39:")
-print("Number of people: " + str(under_40_count))
-print("Average Insurance Cost: $" + str(avg_under_40))
-print("-----")
-print("BMI: 40-49:")
-print("Number of people: " + str(under_50_count))
-print("Average Insurance Cost: $" + str(avg_under_50))
-print("-----")
-print("BMI: 50+:")
-print("Number of people: " + str(over_50_count))
-print("Average Insurance Cost: $" + str(avg_over_50))
-print("-----")
+regions = []
+
+for person in insurance_data_list:
+    regions.append(person["region"])
+
+regions_and_charges = zip(regions, charges)
+regions_and_charges_list = list(regions_and_charges)
+
+northwest_cost = 0
+northwest_count = 0
+southwest_cost = 0
+southwest_count = 0
+northeast_cost = 0
+northeast_count = 0
+southeast_cost = 0
+southeast_count = 0
+
+for person in regions_and_charges_list:
+    if person[0] == "northwest":
+        northwest_cost += person[1]
+        northwest_count += 1
+    if person[0] == "northeast":
+        northeast_cost += person[1]
+        northeast_count += 1
+    if person[0] == "southwest":
+        southwest_cost += person[1]
+        southwest_count += 1
+    if person[0] == "southeast":
+        southeast_cost += person[1]
+        southeast_count += 1
+
+northwest_avg = round(northwest_cost / northwest_count, 2)
+southwest_avg = round(southwest_cost / southwest_count, 2)
+northeast_avg = round(northeast_cost / northeast_count, 2)
+southeast_avg = round(southeast_cost / southeast_count, 2)
 ```
-## Geographical Region
-The dataset was split into 4 'regions'. The distribution across those regions was mostly equal, though the price varied quite significantly, with over $1000 the difference between the cheapest region (southwest) and the most expensive (southeast). The data is shown below:
+This data was analysed like the others, zipped lists, for loops and calculating averages. Results are shown below.
+![Average Insurance Cost by Region](Images/region_cost_3.png)
+As you can see the insurance cost does actually vary quite significantly, with almost $2,500 dollars separting the cheapest from the most expensive region. This is your sign to pack your bags and move to the southwest.
 
-## Northeast: 
-Number of records: 324
+# Smoking Prevalence by Age
+```
+smokerlist = []
+for person in insurance_data_list:
+    smokerlist.append(person["smoker"])
 
-Average Insurance Cost: $13,406.38
-
-## Northwest: 
-Number of records: 325
-
-Average Insurance Cost: $12,417.58
-
-## Southeast: 
-Number of records: 364
-
-Average Insurance Cost: $14,735.41
-
-## Southwest: 
-Number of records: 325
-
-Average Insurance Cost: $12,346.94
-
-## Smokers by Age
+age_and_smoke = zip(int_ages, smokerlist)
+age_and_smoke_list = list(age_and_smoke)
+```
 ```
 below_20_count = 0
 below_20_smokers = 0
@@ -490,44 +375,12 @@ below_40_percent = round(below_40_smokers / below_40_count *100, 2)
 below_50_percent = round(below_50_smokers / below_50_count *100, 2)  
 below_60_percent = round(below_60_smokers / below_60_count *100, 2)
 above_60_percent = round(above_60_smokers / above_60_count *100, 2)  
-
-
-print("Smokers by Age:")
-print("-----")
-print("Age: 0-19:")
-print("Number of people: " + str(below_20_count))
-print("Number of Smokers: " + str(below_20_smokers))
-print("Number of Non-Smokers: " + str(below_20_non_smokers))
-print("Smoker %: " + str(below_20_percent) + "%")
-print("-----")
-print("Age: 20-29:")
-print("Number of people: " + str(below_30_count))
-print("Number of Smokers: " + str(below_30_smokers))
-print("Number of Non-Smokers: " + str(below_30_non_smokers))
-print("Smoker %: " + str(below_30_percent) + "%")
-print("-----")
-print("Age: 30-39:")
-print("Number of people: " + str(below_40_count))
-print("Number of Smokers: " + str(below_40_smokers))
-print("Number of Non-Smokers: " + str(below_40_non_smokers))
-print("Smoker %: " + str(below_40_percent) + "%")
-print("-----")
-print("Age: 40-49:")
-print("Number of people: " + str(below_50_count))
-print("Number of Smokers: " + str(below_50_smokers))
-print("Number of Non-Smokers: " + str(below_50_non_smokers))
-print("Smoker %: " + str(below_50_percent) + "%")
-print("-----")
-print("Age: 50-59:")
-print("Number of people: " + str(below_60_count))
-print("Number of Smokers: " + str(below_60_smokers))
-print("Number of Non-Smokers: " + str(below_60_non_smokers))
-print("Smoker %: " + str(below_60_percent) + "%")
-print("-----")
-print("Age: 60+:")
-print("Number of people: " + str(above_60_count))
-print("Number of Smokers: " + str(above_60_smokers))
-print("Number of Non-Smokers: " + str(above_60_non_smokers))
-print("Smoker %: " + str(above_60_percent) + "%")
-print("-----")
 ```
+My analysis methods here were almost identical, although this time I had three variables to add to: 'overall count', 'smoker count', and 'non-smoker count'. For this I used an 'else' statement in my for loops. The logic first checked their age and adjusted the count variable of that age group, before splitting into an if/else statement to determine whether the 'smoker' or 'non-smoker' count was updated. I was expecting to find a trend that showed much higher levels among older people and much lower levels among younger people. The results are shown below.
+
+![Smoking Prevalence by Age](Images/smoking_age.png)
+
+The darker red line on this graph tells the main story. It shows that smoking prevalence is relatively fixed around 20-22% from ages 0-49 (hopefully this doesn't mean 20% of 0 year olds are smoking). Surpisingly a drop off is then seen in the 50-59 age group to around 15% before it bounces right back in the 60+ group to a high of just under 25%.
+
+
+
