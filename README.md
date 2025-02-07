@@ -118,7 +118,7 @@ The cost variable was divided by the count variable and rounded to two decimal p
 
 The results are shown below in a bar chart.
 ![Average Insurance Cost by Age](Images/age_cost_3.png)
-As you can see the average cost of medical insurance increases with age throughout the age groups, however drops off at the 60+ group.
+As you can see the average cost of medical insurance increases with age throughout the age groups, however drops off at the 60+ group to return to levels that are similar to the 0-20 group.
 
 
 
