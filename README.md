@@ -1,11 +1,11 @@
 # Insurance-Cost-Analysis
-![The Unknown Lands](Images/medical_insurance_project.jpg)
+![Medical Insurance Image](Images/medical_insurance_project.jpg)
 
 ## Project Introduction
 
 This python project is part of the Codecademy 'Business Intelligence Data Analyst' career path I have been undertaking.
 
-The project itself was completely open-ended. I was provided with a csv file containing medical insurance cost data and was tasked with using python to analyse the data set and draw out meaningful insights and conclusions. The csv file can be found in the file repository above.
+The project itself was completely open-ended. I was provided with a csv file containing medical insurance cost data and was tasked with using python to analyse the data set and draw out meaningful insights and conclusions. The csv file can be found in the file repository above, as can the ipynb file, showing my workings within Jupyter notebook.
 
 I chose to research the following themes from the dataset:
 
